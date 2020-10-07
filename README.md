@@ -28,3 +28,6 @@ By default, tests will run on Chrome. To change that, specify `-Dbrowser={browse
 
 You can also select specific scenarios to execute using `-Dcucumber.options="--tags @your_tag"`. More info about tags and how to combine them [here](https://github.com/cucumber/cucumber/tree/master/tag-expressions).
 
+## Update 0.1 
+
+Some update here
