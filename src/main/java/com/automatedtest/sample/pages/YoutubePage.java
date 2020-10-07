@@ -82,8 +82,4 @@ public class YoutubePage extends BasePage {
         return this.videoTitle.getText();
     }
 
-    public String getVideoURL() {
-        return this.getCurrentUrl();
-    }
-
 }

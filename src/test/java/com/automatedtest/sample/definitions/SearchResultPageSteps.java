@@ -29,8 +29,8 @@ public class SearchResultPageSteps {
 
     @Then("First video of Google search result can be opened correctly$")
     public void canFirstVideoBeOpened() {
-        String videoURL = this.searchResultPage.openVideoAndGetURL();
-        String youtubeVideoURL = this.youtubePage.getVideoURL();
+        String videoURL = this.searchResultPage.openFirstVideoAndGetUrl();
+        String youtubeVideoURL = this.youtubePage.getCurrentUrl();
 
         Assert.assertEquals("First video of Google search result should be opened correctly",
                 videoURL, youtubeVideoURL);
