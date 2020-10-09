@@ -23,36 +23,39 @@ public class SearchSettingPageSteps {
     }
 
     @When("I Check Turn {string} SafeSearch")
-    public void aUserCheckTurnOnOffSafeSearch(String onOff) {
-        if(!onOff.equalsIgnoreCase(this.settingPage.getSafeSearchValue()))
+    public void aUserCheckTurnOnOffSafeSearch(String state) {
+        boolean bState = "on".equalsIgnoreCase(state);
+        if (this.settingPage.getSafeSearchState() != bState)
             this.settingPage.clickChangeSafeSearch();
     }
 
     @And("I save the Setting Page")
     public void aUserSaveTheSettingPage() {
         this.settingPage.saveSettingPage();
-        this.settingPage.acceptConfirmDialog();
         this.settingPage.delay(1);
     }
 
     @And("I comeback Setting Page again")
     public void aUserComebackSettingPageAgain() {
-        this.settingPage.goToSettingPage();
+        this.settingPage.goToSettingPageFromSearchPage();
     }
-
 
     @Then("SafeSearch  check status should be {string}")
     public void safeSearchCheckStatusShouldBe(String status) {
-        Assert.assertEquals("SafeSearch Should be on Checked",status,this.settingPage.getSafeSearchValue());
+        Assert.assertEquals("SafeSearch Should be on Checked", status, this.settingPage.getSafeSearchState() ? "on" : "off");
     }
 
     @And("I select radio button {string} Spoken answers")
     public void aUserSelectRadioButtonSpokenAnswers(String option) {
-        this.settingPage.selectRadioSpoken(option);
+        try {
+            this.settingPage.selectRadioSpoken(option);
+        } catch (Exception e) {
+            Assert.fail(e.getMessage());
+        }
     }
 
     @Then("Spoken answers radio selected should be {string}")
     public void spokenAnswersRadioSelectedShouldBe(String option) {
-        Assert.assertEquals("spoken Answers Radio Selected Should Be Correct",option, this.settingPage.getSelectedRadioSpokenValue());
+        Assert.assertEquals("spoken Answers Radio Selected Should Be Correct", option, this.settingPage.getSelectedRadioSpokenValue());
     }
 }

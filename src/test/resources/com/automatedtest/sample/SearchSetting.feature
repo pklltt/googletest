@@ -12,5 +12,5 @@ Feature: SearchSetting
 
     Examples:
       | safeOption   | spokenOption                     |
-      | on           | Speak answers for voice search   |
-      | off          | Just show text                   |
+      | off          | Speak answers for voice search   |
+      | on           | Just show text                   |
