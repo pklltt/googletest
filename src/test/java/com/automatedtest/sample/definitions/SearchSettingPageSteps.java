@@ -1,7 +1,5 @@
 package com.automatedtest.sample.definitions;
 
-import com.automatedtest.sample.driver.Wait;
-import com.automatedtest.sample.pages.HomePage;
 import com.automatedtest.sample.pages.SettingPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -22,7 +20,7 @@ public class SearchSettingPageSteps {
         this.settingPage.goToSettingPage();
     }
 
-    @When("I Check Turn {string} SafeSearch")
+    @When("^I Check Turn (\"on\"|\"off\") SafeSearch$")
     public void aUserCheckTurnOnOffSafeSearch(String state) {
         boolean bState = "on".equalsIgnoreCase(state);
         if (this.settingPage.getSafeSearchState() != bState)
@@ -32,7 +30,7 @@ public class SearchSettingPageSteps {
     @And("I save the Setting Page")
     public void aUserSaveTheSettingPage() {
         this.settingPage.saveSettingPage();
-        this.settingPage.delay(1);
+        this.settingPage.delay(2);
     }
 
     @And("I comeback Setting Page again")
