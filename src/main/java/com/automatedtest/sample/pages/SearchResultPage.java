@@ -28,6 +28,9 @@ public class SearchResultPage extends BasePage {
     @FindBy(xpath = "//input[@aria-label='Search']")
     private WebElement searchInput;
 
+    @FindBy(xpath = "//a[text()='Images']")
+    private WebElement linkImages;
+
     public SearchResultPage() {
         PageFactory.initElements(this.driver, this);
     }
@@ -54,6 +57,11 @@ public class SearchResultPage extends BasePage {
         String videoName = this.videoResultTitles.get(0).getText();
         this.videoResultUrls.get(0).click();
         return videoName;
+    }
+
+    public void changeToImageTab() {
+        this.wait.forElementToBeDisplayed(this.linkImages);
+        this.linkImages.click();
     }
 }
 
