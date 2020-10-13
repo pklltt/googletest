@@ -12,5 +12,4 @@ Feature: SearchImageByDropLink
     Examples:
       | queryText    |
       | hoa sen      |
-      | tre viet nam |
 
