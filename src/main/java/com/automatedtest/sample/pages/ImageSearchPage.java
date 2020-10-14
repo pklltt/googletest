@@ -1,14 +1,12 @@
 package com.automatedtest.sample.pages;
 
+import com.automatedtest.sample.utils.Common;
 import com.automatedtest.sample.utils.Constants;
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class ImageSearchPage extends BasePage {
@@ -23,7 +21,6 @@ public class ImageSearchPage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Upload an image']")
     WebElement tabUploadImage;
-
 
     @FindBy(xpath = "//input[@name='encoded_image']")
     WebElement buttonChooseFile;
@@ -44,22 +41,15 @@ public class ImageSearchPage extends BasePage {
         this.wait.forLoading(Constants.DEFAULT_TIME_WAIT);
     }
 
-    public void uploadImage(String filePath) {
-        try {
-            URL res = getClass().getClassLoader().getResource(filePath);
-            File file = Paths.get(res.toURI()).toFile();
-            String absolutePath = file.getAbsolutePath();
-            this.wait.forElementToBeDisplayed(this.buttonChooseImage);
-            this.buttonChooseImage.click();
-            this.wait.forElementToBeDisplayed(this.linkTabUploadImage);
-            this.linkTabUploadImage.click();
-            this.wait.forElementToBeDisplayed(this.tabUploadImage);
-            this.wait.forElementToBeDisplayed(this.buttonChooseFile);
-            this.buttonChooseFile.sendKeys(absolutePath);
-            this.wait.forLoading(Constants.DEFAULT_TIME_WAIT);
-        } catch (Exception e) {
-            Assert.fail("Upload image error");
-        }
+    public void uploadImage(String filePath) throws URISyntaxException {
+        this.wait.forElementToBeDisplayed(this.buttonChooseImage);
+        this.buttonChooseImage.click();
+        this.wait.forElementToBeDisplayed(this.linkTabUploadImage);
+        this.linkTabUploadImage.click();
+        this.wait.forElementToBeDisplayed(this.tabUploadImage);
+        this.wait.forElementToBeDisplayed(this.buttonChooseFile);
+        this.buttonChooseFile.sendKeys(Common.getResourceAbsolutePath(this, filePath));
+        this.wait.forLoading(Constants.DEFAULT_TIME_WAIT);
     }
 
     public String getImageSearchName() {
@@ -70,6 +60,4 @@ public class ImageSearchPage extends BasePage {
     public List<WebElement> getListImageResult() {
         return listImageResult;
     }
-
-
 }
