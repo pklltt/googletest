@@ -44,12 +44,8 @@ public class SearchSettingPageSteps {
     }
 
     @And("I select radio button {string} Spoken answers")
-    public void aUserSelectRadioButtonSpokenAnswers(String option) {
-        try {
-            this.settingPage.selectRadioSpoken(option);
-        } catch (Exception e) {
-            Assert.fail(e.getMessage());
-        }
+    public void aUserSelectRadioButtonSpokenAnswers(String option) throws Exception {
+        this.settingPage.selectRadioSpoken(option);
     }
 
     @Then("Spoken answers radio selected should be {string}")

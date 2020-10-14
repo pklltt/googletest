@@ -1,6 +1,7 @@
 package com.automatedtest.sample.pages;
 
 import com.automatedtest.sample.driver.Action;
+import com.automatedtest.sample.driver.DriverUtils;
 import com.automatedtest.sample.driver.Setup;
 import com.automatedtest.sample.driver.Wait;
 import com.automatedtest.sample.utils.Log;
@@ -14,11 +15,13 @@ public class BasePage {
     protected WebDriver driver;
     protected Wait wait;
     protected Action action;
+    protected DriverUtils driverUtils;
 
     public BasePage() {
         this.driver = Setup.driver;
         this.wait = new Wait(this.driver);
         this.action = new Action(this.driver);
+        this.driverUtils = new DriverUtils(this.driver);
     }
 
     public void delay(int timeWait) {
@@ -51,5 +54,17 @@ public class BasePage {
     public String getCurrentUrl() {
         String url = driver.getCurrentUrl();
         return url;
+    }
+
+    public void scrollToBottom() {
+        this.driverUtils.scrollToBottom();
+    }
+
+    public void scrollToTop() {
+        this.driverUtils.scrollToTop();
+    }
+
+    public void takeSnapShot(String filePath) throws Exception {
+        this.driverUtils.takeSnapShot(filePath);
     }
 }
