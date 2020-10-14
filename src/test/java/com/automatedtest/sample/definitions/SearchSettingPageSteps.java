@@ -22,7 +22,7 @@ public class SearchSettingPageSteps {
 
     @When("^I Check Turn (\"on\"|\"off\") SafeSearch$")
     public void aUserCheckTurnOnOffSafeSearch(String state) {
-        boolean bState = "on".equalsIgnoreCase(state);
+        boolean bState = "\"on\"".equalsIgnoreCase(state);
         if (this.settingPage.getSafeSearchState() != bState)
             this.settingPage.clickChangeSafeSearch();
     }
@@ -38,7 +38,7 @@ public class SearchSettingPageSteps {
         this.settingPage.goToSettingPageFromSearchPage();
     }
 
-    @Then("SafeSearch  check status should be {string}")
+    @Then("SafeSearch check status should be {string}")
     public void safeSearchCheckStatusShouldBe(String status) {
         Assert.assertEquals("SafeSearch Should be on Checked", status, this.settingPage.getSafeSearchState() ? "on" : "off");
     }

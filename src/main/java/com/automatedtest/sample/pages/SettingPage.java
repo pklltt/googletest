@@ -2,13 +2,15 @@ package com.automatedtest.sample.pages;
 
 import com.automatedtest.sample.utils.Constants;
 import com.automatedtest.sample.utils.Log;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebElement;
+import com.github.romankh3.image.comparison.ImageComparison;
+import com.github.romankh3.image.comparison.model.ImageComparisonResult;
+import com.github.romankh3.image.comparison.model.ImageComparisonState;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.File;
 import java.util.List;
 
 public class SettingPage extends BasePage {
@@ -32,6 +34,9 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
+    private String imagePath1 = "target/capture-image-html/screenshot1.png";
+    private String imagePath2 = "target/capture-image-html/screenshot2.png";
+    private String compareImagePath = "target/capture-image-html/compare.png";
 
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
@@ -78,7 +83,6 @@ public class SettingPage extends BasePage {
             Log.info(e.toString());
             return null;
         }
-
     }
 
     public void selectRadioSpoken(String value) throws Exception {
@@ -102,5 +106,39 @@ public class SettingPage extends BasePage {
             }
         }
         return value;
+    }
+
+    public void scrollToBottom() {
+        JavascriptExecutor js = ((JavascriptExecutor) this.driver);
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        this.wait.sleep(1);
+    }
+
+    public void scrollToTop() {
+        JavascriptExecutor js = ((JavascriptExecutor) this.driver);
+        js.executeScript("window.scrollTo(0, 0)");
+        this.wait.sleep(1);
+    }
+
+    public void takeSnapShot(int id) throws Exception {
+        TakesScreenshot scrShot = ((TakesScreenshot) this.driver);
+        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+
+        if (id == 1) {
+            FileUtils.copyFile(new File(SrcFile.getAbsolutePath()), new File(imagePath1));
+        }
+
+        if (id == 2) {
+            FileUtils.copyFile(new File(SrcFile.getAbsolutePath()), new File(imagePath2));
+        }
+    }
+
+    public boolean compareImage() {
+        ImageComparison imageComparison = new ImageComparison(imagePath1, imagePath2);
+        imageComparison.setDestination(new File(compareImagePath));
+        ImageComparisonResult imageComparisonResult = imageComparison.compareImages();
+        ImageComparisonState imageComparisonState = imageComparisonResult.getImageComparisonState();
+
+        return (imageComparisonState == ImageComparisonState.MATCH);
     }
 }
