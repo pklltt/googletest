@@ -7,7 +7,7 @@ Feature: SearchSetting
     And  I select radio button "<spokenOption>" Spoken answers
     And I save the Setting Page
     And I comeback Setting Page again
-    Then SafeSearch  check status should be "<safeOption>"
+    Then SafeSearch check status should be "<safeOption>"
     Then Spoken answers radio selected should be "<spokenOption>"
 
     Examples:

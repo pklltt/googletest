@@ -38,7 +38,7 @@ public class SearchSettingPageSteps {
         this.settingPage.goToSettingPageFromSearchPage();
     }
 
-    @Then("SafeSearch  check status should be {string}")
+    @Then("SafeSearch check status should be {string}")
     public void safeSearchCheckStatusShouldBe(String status) {
         Assert.assertEquals("SafeSearch Should be on Checked", status, this.settingPage.getSafeSearchState() ? "on" : "off");
     }
