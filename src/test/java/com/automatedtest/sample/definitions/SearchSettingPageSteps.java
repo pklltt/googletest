@@ -20,7 +20,7 @@ public class SearchSettingPageSteps {
         this.settingPage.goToSettingPage();
     }
 
-    @When("^I Check Turn (\"on\"|\"off\") SafeSearch$")
+    @When("^I Check Turn '(on|off)' SafeSearch$")
     public void aUserCheckTurnOnOffSafeSearch(String state) {
         boolean bState = "\"on\"".equalsIgnoreCase(state);
         if (this.settingPage.getSafeSearchState() != bState)
@@ -30,7 +30,6 @@ public class SearchSettingPageSteps {
     @And("I save the Setting Page")
     public void aUserSaveTheSettingPage() {
         this.settingPage.saveSettingPage();
-        this.settingPage.delay(2);
     }
 
     @And("I comeback Setting Page again")
@@ -44,12 +43,12 @@ public class SearchSettingPageSteps {
     }
 
     @And("I select radio button {string} Spoken answers")
-    public void aUserSelectRadioButtonSpokenAnswers(String option) throws Exception {
+    public void aUserSelectRadioButtonSpokenAnswers(String option){
         this.settingPage.selectRadioSpoken(option);
     }
 
     @Then("Spoken answers radio selected should be {string}")
     public void spokenAnswersRadioSelectedShouldBe(String option) {
-        Assert.assertEquals("spoken Answers Radio Selected Should Be Correct", option, this.settingPage.getSelectedRadioSpokenValue());
+        Assert.assertEquals("Spoken answers radio selected should be correct", option, this.settingPage.getSelectedRadioSpokenValue());
     }
 }

@@ -1,7 +1,6 @@
 package com.automatedtest.sample.pages;
 
 import com.automatedtest.sample.utils.Constants;
-import com.automatedtest.sample.utils.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,36 +58,25 @@ public class SettingPage extends BasePage {
     public boolean getSafeSearchState() {
         this.wait.forElementToBeDisplayed(this.divCheckSafeSearch);
         String value = this.checkInput.getAttribute("value");
-        if (value.equalsIgnoreCase("on"))
-            return true;
-        return false;
+        return value.equalsIgnoreCase("on");
     }
 
     public void saveSettingPage() {
         this.wait.forElementToBeDisplayed(this.buttonSave);
         this.buttonSave.click();
+        this.wait.forLoading();
     }
 
     //TODO: support generic dynamic element
     public WebElement getDivRadioSpokenByValue(String value) {
-        try {
-            String sxpath = "//span[text()='" + value + "']/parent::div";
-            WebElement div = this.driver.findElement(By.xpath(sxpath));
-            return div;
-        } catch (Exception e) {
-            Log.info(e.toString());
-            return null;
-        }
+        String sxpath = "//span[text()='" + value + "']/parent::div";
+        WebElement div = this.driver.findElement(By.xpath(sxpath));
+        return div;
     }
 
-    public void selectRadioSpoken(String value) throws Exception {
+    public void selectRadioSpoken(String value) {
         // get radio have text equal : value
         WebElement div = getDivRadioSpokenByValue(value);
-        if (div == null) {
-            Log.info("Not Found Radio with value = " + value);
-            throw new Exception("Not Found Radio with value = " + value);
-        }
-
         this.wait.forElementToBeDisplayed(div);
         div.click();
     }
