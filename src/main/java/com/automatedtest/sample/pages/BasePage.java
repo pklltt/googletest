@@ -47,4 +47,9 @@ public class BasePage {
         }
         return true;
     }
+
+    public String getCurrentUrl() {
+        String url = driver.getCurrentUrl();
+        return url;
+    }
 }

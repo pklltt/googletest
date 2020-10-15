@@ -11,19 +11,19 @@ import java.util.List;
 
 public class SearchResultPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='rc' and .//span[@class='st' and text()]]")
+    @FindBy(xpath = "//div[@class='rc' and .//span[text()] and .//a[@aria-label]]")
     private List<WebElement> normalResults;
 
-    @FindBy(xpath = "//g-section-with-header[.//h3[text()='Videos']]//a")
+    @FindBy(xpath = "//g-section-with-header[.//h3[text()='Videos']]//a[not(@class)]")
     private List<WebElement> videoResultUrls;
 
     @FindBy(xpath = "//g-section-with-header[.//h3[text()='Videos']]//a//div[@role='heading']")
     private List<WebElement> videoResultTitles;
 
-    @FindBy(css = ".related-question-pair")
+    @FindBy(xpath = "//div[@class='related-question-pair']")
     private List<WebElement> questionResults;
 
-    @FindBy(xpath = "//g-section-with-header[.//h3[text()='Top stories']]//a")
+    @FindBy(xpath = "//g-section-with-header[.//h3[text()='Top stories']]//a[not(@class)]")
     private List<WebElement> topStoriesResults;
 
     @FindBy(xpath = "//input[@aria-label='Search']")
