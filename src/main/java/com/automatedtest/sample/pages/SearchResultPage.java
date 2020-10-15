@@ -79,10 +79,10 @@ public class SearchResultPage extends BasePage {
         return true;
     }
 
-    public String openVideoAndGetName() {
-        String videoName = this.videoResultTitles.get(0).getText();
+    public String openFirstVideoAndGetUrl() {
+        String videoURL = this.videoResultUrls.get(0).getAttribute("href");
         this.videoResultUrls.get(0).click();
-        return videoName;
+        return videoURL;
     }
 
     public void changeToImageTab() {
