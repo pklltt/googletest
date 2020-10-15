@@ -43,7 +43,7 @@ public class SearchSettingPageSteps {
     }
 
     @And("I select radio button {string} Spoken answers")
-    public void aUserSelectRadioButtonSpokenAnswers(String option) throws Exception {
+    public void aUserSelectRadioButtonSpokenAnswers(String option){
         this.settingPage.selectRadioSpoken(option);
     }
 
