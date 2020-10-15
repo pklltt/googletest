@@ -30,6 +30,7 @@ public class DriverUtils {
     }
 
     public void takeSnapShot(String filePath) throws Exception {
+        FileUtils.deleteQuietly(new File(filePath));
         TakesScreenshot scrShot = ((TakesScreenshot) this.driver);
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(new File(SrcFile.getAbsolutePath()), new File(filePath));

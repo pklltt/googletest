@@ -11,5 +11,5 @@ Feature: ScrollPage
     Then Image with file path "<file1>" and "<file2>" should be the same
 
     Examples:
-      | file1  | file2  |
+      |   file1     |   file2    |
       | image1.png  | image2.png |
