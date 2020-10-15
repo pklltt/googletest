@@ -81,4 +81,5 @@ public class YoutubePage extends BasePage {
         this.wait.forElementToBeDisplayed(this.videoTitle);
         return this.videoTitle.getText();
     }
+
 }

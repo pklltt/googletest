@@ -9,12 +9,13 @@ Feature: Search
     Then "<queryText>" is displayed in all the results
     And "<queryText>" is till remaining in the search box
     And First video of Google search result can be opened correctly
-    When I click start button on the video
-    Then Video should be playing
-    When I wait for 10 seconds
-    And I click pause button on the video
-    Then Video should be paused
+    #When I click start button on the video
+    #Then Video should be playing
+    #When I wait for 10 seconds
+    #And I click pause button on the video
+    #Then Video should be paused
 
     Examples:
       | queryText   |
       | the Beatles |
+      | selena gomez |
