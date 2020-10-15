@@ -29,10 +29,6 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
-    private String imagePath1 = "target/capture-image-html/screenshot1.png";
-    private String imagePath2 = "target/capture-image-html/screenshot2.png";
-    private String compareImagePath = "target/capture-image-html/compare.png";
-
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
     }
