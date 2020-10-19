@@ -1,5 +1,6 @@
 package com.automatedtest.sample.pages;
 
+import com.automatedtest.sample.utils.Constants;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,6 +28,34 @@ public class SearchResultPage extends BasePage {
 
     @FindBy(xpath = "//input[@aria-label='Search']")
     private WebElement searchInput;
+
+    @FindBy(xpath = "//a[text()='Images']")
+    private WebElement linkImages;
+
+    @FindBy(xpath = "//input[@value='Search by image']")
+    WebElement buttonSearchByImage;
+
+    @FindBy(xpath = "//span[@aria-label='Search by image']")
+    WebElement spanSearchByImage;
+
+    @FindBy(xpath = "//img[starts-with(@src,'data:image') and @alt!='']/parent::div")
+    List<WebElement> listImageResult;
+
+    @FindBy(xpath = "//div[text()='Search by image']/parent::div/parent::div")
+    WebElement divToDropURL;
+
+    @FindBy(xpath = "//span[text()='Paste image URL']")
+    WebElement tabPasteURL;
+
+    // This function not work correct because HTML5
+    public void dragNDropFirstImageToSearch() throws Exception {
+        this.wait.forElementToBeDisplayed(this.spanSearchByImage);
+        this.spanSearchByImage.click();
+        this.wait.forElementToBeDisplayed(this.tabPasteURL);
+        this.wait.forElementToBeDisplayed(this.buttonSearchByImage);
+        this.action.dragAndDropElement(listImageResult.get(0), divToDropURL);
+        this.wait.forLoading(Constants.DEFAULT_TIME_WAIT);
+    }
 
     public SearchResultPage() {
         PageFactory.initElements(this.driver, this);
@@ -60,6 +89,11 @@ public class SearchResultPage extends BasePage {
         String videoURL = this.videoResultUrls.get(0).getAttribute("href");
         this.videoResultUrls.get(0).click();
         return videoURL;
+    }
+
+    public void changeToImageTab() {
+        this.wait.forElementToBeDisplayed(this.linkImages);
+        this.linkImages.click();
     }
 }
 
