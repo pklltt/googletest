@@ -8,10 +8,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Setup {
 
-    public static WebDriver driver;
+    public static ThreadLocal<WebDriver> currentDriver = new ThreadLocal<WebDriver>();
 
     @Before
-    public void setWebDriver() throws Exception {
+    public void driverInit() {
+        WebDriver driver;
+
         String browser = System.getProperty("browser");
         if (browser == null) {
             browser = "chrome";
@@ -30,5 +32,10 @@ public class Setup {
                 throw new IllegalArgumentException("Browser \"" + browser + "\" isn't supported.");
         }
         driver.manage().window().maximize();
+        currentDriver.set(driver);
+    }
+
+    public WebDriver getDriver() {
+        return currentDriver.get();
     }
 }

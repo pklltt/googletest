@@ -11,7 +11,7 @@ public class TearDown {
     private WebDriver driver;
 
     public TearDown() {
-        this.driver = Setup.driver;
+        this.driver = Setup.currentDriver.get();
     }
 
     @After
@@ -19,7 +19,7 @@ public class TearDown {
         if (scenario.isFailed()) {
             saveScreenshotsForScenario(scenario);
         }
-        this.driver.quit();
+        Setup.currentDriver.get().quit();
     }
 
     private void saveScreenshotsForScenario(final Scenario scenario) {

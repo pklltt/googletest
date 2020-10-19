@@ -16,7 +16,7 @@ public class BasePage {
     protected Action action;
 
     public BasePage() {
-        this.driver = Setup.driver;
+        this.driver = Setup.currentDriver.get();
         this.wait = new Wait(this.driver);
         this.action = new Action(this.driver);
     }
