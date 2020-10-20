@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 public class Setup {
 
@@ -26,7 +28,11 @@ public class Setup {
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
-                driver = new FirefoxDriver();
+                FirefoxProfile profile = new FirefoxProfile();
+                profile.setPreference("intl.accept_languages","en-GB");
+                FirefoxOptions options = new FirefoxOptions();
+                options.setProfile(profile);
+                driver = new FirefoxDriver(options);
                 break;
             default:
                 throw new IllegalArgumentException("Browser \"" + browser + "\" isn't supported.");
