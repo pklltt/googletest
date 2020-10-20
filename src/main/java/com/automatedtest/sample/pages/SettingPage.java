@@ -29,7 +29,6 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
-
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
     }
