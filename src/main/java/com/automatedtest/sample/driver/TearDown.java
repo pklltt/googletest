@@ -19,7 +19,7 @@ public class TearDown {
         if (scenario.isFailed()) {
             saveScreenshotsForScenario(scenario);
         }
-        Setup.currentDriver.get().quit();
+        this.driver.quit();
     }
 
     private void saveScreenshotsForScenario(final Scenario scenario) {
