@@ -4,6 +4,10 @@ import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,5 +28,12 @@ public class Common {
         ImageComparisonState imageComparisonState = imageComparisonResult.getImageComparisonState();
 
         return (imageComparisonState == ImageComparisonState.MATCH);
+    }
+
+    public static String getResourceAbsolutePath(Object object, String filePath) throws URISyntaxException {
+        URL res = object.getClass().getClassLoader().getResource(filePath);
+        File file = Paths.get(res.toURI()).toFile();
+        String absolutePath = file.getAbsolutePath();
+        return absolutePath;
     }
 }
