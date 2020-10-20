@@ -1,6 +1,7 @@
 package com.automatedtest.sample.pages;
 
 import com.automatedtest.sample.utils.Constants;
+import com.automatedtest.sample.utils.Link;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,7 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
+    Link link = new Link("//span[text()='%s']/parent::div");
 
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
@@ -64,16 +66,9 @@ public class SettingPage extends BasePage {
         this.wait.forLoading();
     }
 
-    //TODO: support generic dynamic element
-    public WebElement getDivRadioSpokenByValue(String value) {
-        String sxpath = "//span[text()='" + value + "']/parent::div";
-        WebElement div = this.driver.findElement(By.xpath(sxpath));
-        return div;
-    }
-
     public void selectRadioSpoken(String value) {
         // get radio have text equal : value
-        WebElement div = getDivRadioSpokenByValue(value);
+        WebElement div = this.driver.findElement(By.xpath(link.format(value)));
         this.wait.forElementToBeDisplayed(div);
         div.click();
     }
