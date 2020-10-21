@@ -1,6 +1,7 @@
 package com.automatedtest.sample.pages;
 
 import com.automatedtest.sample.driver.Action;
+import com.automatedtest.sample.driver.DriverUtils;
 import com.automatedtest.sample.driver.Setup;
 import com.automatedtest.sample.driver.Wait;
 import com.automatedtest.sample.utils.Log;
@@ -16,7 +17,7 @@ public class BasePage {
     protected Action action;
 
     public BasePage() {
-        this.driver = Setup.driver;
+        this.driver = DriverUtils.getDriver();
         this.wait = new Wait(this.driver);
         this.action = new Action(this.driver);
     }
