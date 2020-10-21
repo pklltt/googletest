@@ -30,7 +30,7 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
-    DynamicControl dynamicControl = new DynamicControl("//span[text()='%s']/parent::div");
+    DynamicControl radioSpokenAnswers = new DynamicControl("//span[text()='%s']/parent::div");
 
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
@@ -68,7 +68,7 @@ public class SettingPage extends BasePage {
 
     public void selectRadioSpoken(String value) {
         // get radio have text equal : value
-        WebElement div = dynamicControl.findElement(value);
+        WebElement div = radioSpokenAnswers.findElement(value);
         this.wait.forElementToBeDisplayed(div);
         div.click();
     }

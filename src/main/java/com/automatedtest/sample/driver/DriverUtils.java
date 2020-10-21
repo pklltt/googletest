@@ -15,11 +15,7 @@ import java.io.File;
 
 public class DriverUtils {
     public static ThreadLocal<WebDriver> currentDriver = new ThreadLocal<WebDriver>();
-    private Wait wait;
-
-    public DriverUtils() {
-        this.wait = new Wait(this.currentDriver.get());
-    }
+    public static Wait wait;
 
     public static void driverInit() {
         WebDriver driver;
@@ -47,23 +43,24 @@ public class DriverUtils {
         }
         driver.manage().window().maximize();
         currentDriver.set(driver);
+        wait = new Wait(driver);
     }
 
-    public void scrollToBottom() {
-        JavascriptExecutor js = ((JavascriptExecutor) this.getDriver());
+    public static void scrollToBottom() {
+        JavascriptExecutor js = ((JavascriptExecutor) getDriver());
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        this.wait.forLoading();
+        wait.forLoading();
     }
 
-    public void scrollToTop() {
-        JavascriptExecutor js = ((JavascriptExecutor) this.getDriver());
+    public static void scrollToTop() {
+        JavascriptExecutor js = ((JavascriptExecutor) getDriver());
         js.executeScript("window.scrollTo(0, 0)");
-        this.wait.forLoading();
+        wait.forLoading();
     }
 
-    public void takeSnapShot(String filePath) throws Exception {
+    public static void takeSnapShot(String filePath) throws Exception {
         FileUtils.deleteQuietly(new File(filePath));
-        TakesScreenshot scrShot = ((TakesScreenshot) this.getDriver());
+        TakesScreenshot scrShot = ((TakesScreenshot) getDriver());
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(new File(SrcFile.getAbsolutePath()), new File(filePath));
     }

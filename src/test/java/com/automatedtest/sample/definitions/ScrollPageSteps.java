@@ -10,26 +10,24 @@ import org.junit.Assert;
 
 public class ScrollPageSteps {
     private final SettingPage settingPage;
-    private final DriverUtils driverUtils;
 
     public ScrollPageSteps() {
         this.settingPage = new SettingPage();
-        this.driverUtils = new DriverUtils();
     }
 
     @When("I Scroll to bottom")
     public void aUserScrollToBottom() {
-        this.driverUtils.scrollToBottom();
+        DriverUtils.scrollToBottom();
     }
 
     @And("I Scroll to top")
     public void aUserScrollToTop() {
-        this.driverUtils.scrollToTop();
+        DriverUtils.scrollToTop();
     }
 
     @And("I capture image and save it to {string}")
     public void aUserCaptureImage(String filePath) throws Exception {
-        this.driverUtils.takeSnapShot(filePath);
+        DriverUtils.takeSnapShot(filePath);
     }
 
     @Then("Image with file path {string} and {string} should be the same")
