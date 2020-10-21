@@ -31,7 +31,7 @@ public class SettingPage extends BasePage {
     private WebElement linkSearchSettings;
 
     Link link = new Link("//span[text()='%s']/parent::div");
-
+  
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
     }

@@ -16,6 +16,6 @@ Feature: Search
     #Then Video should be paused
 
     Examples:
-      | queryText   |
-      | the Beatles |
-      | selena gomez |
+      | queryText     |
+      | the Beatles   |
+      | selena gomez  |
