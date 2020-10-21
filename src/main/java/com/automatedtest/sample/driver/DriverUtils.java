@@ -35,4 +35,8 @@ public class DriverUtils {
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(new File(SrcFile.getAbsolutePath()), new File(filePath));
     }
+
+    public WebDriver getDriver(){
+        return this.driver;
+    }
 }
