@@ -11,7 +11,7 @@ public class TearDown {
     private WebDriver driver;
 
     public TearDown() {
-        this.driver = Setup.currentDriver.get();
+        this.driver = DriverUtils.getDriver();
     }
 
     @After
