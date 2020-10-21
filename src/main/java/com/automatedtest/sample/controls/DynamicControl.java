@@ -6,14 +6,11 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-//TODO: support generic dynamic element
 public class DynamicControl {
     private String locator;
-    private DriverUtils driverUtils;
 
-    public DynamicControl(DriverUtils driverUtils, String str) {
+    public DynamicControl(String str) {
         locator = str;
-        this.driverUtils = driverUtils;
     }
 
     private String format(Object... args) {
@@ -21,11 +18,10 @@ public class DynamicControl {
     }
 
     public WebElement findElement(Object... args) {
-        return this.driverUtils.getDriver().findElement(By.xpath(this.format(args)));
+        return DriverUtils.getDriver().findElement(By.xpath(this.format(args)));
     }
 
     public List<WebElement> findElements(Object... args) {
-        return this.driverUtils.getDriver().findElements(By.xpath(this.format(args)));
+        return DriverUtils.getDriver().findElements(By.xpath(this.format(args)));
     }
-
 }

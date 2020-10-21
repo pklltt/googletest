@@ -30,7 +30,7 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
-    DynamicControl dynamicControl = new DynamicControl(this.driverUtils,"//span[text()='%s']/parent::div");
+    DynamicControl dynamicControl = new DynamicControl("//span[text()='%s']/parent::div");
 
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
