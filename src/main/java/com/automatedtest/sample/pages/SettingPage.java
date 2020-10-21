@@ -1,7 +1,7 @@
 package com.automatedtest.sample.pages;
 
+import com.automatedtest.sample.controls.DynamicControl;
 import com.automatedtest.sample.utils.Constants;
-import com.automatedtest.sample.utils.Link;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +30,7 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//a[text()='Search settings']")
     private WebElement linkSearchSettings;
 
-    Link link = new Link("//span[text()='%s']/parent::div");
+    DynamicControl dynamicControl = new DynamicControl("//span[text()='%s']/parent::div");
 
     public SettingPage() {
         PageFactory.initElements(this.driver, this);
@@ -68,7 +68,7 @@ public class SettingPage extends BasePage {
 
     public void selectRadioSpoken(String value) {
         // get radio have text equal : value
-        WebElement div = this.driver.findElement(By.xpath(link.format(value)));
+        WebElement div = dynamicControl.findElement(value);
         this.wait.forElementToBeDisplayed(div);
         div.click();
     }
