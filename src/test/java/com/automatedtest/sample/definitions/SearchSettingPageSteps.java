@@ -23,6 +23,7 @@ public class SearchSettingPageSteps {
     @When("^I Check Turn '(on|off)' SafeSearch$")
     public void aUserCheckTurnOnOffSafeSearch(String state) {
         boolean bState = "on".equalsIgnoreCase(state);
+      
         if (this.settingPage.getSafeSearchState() != bState)
             this.settingPage.clickChangeSafeSearch();
     }
