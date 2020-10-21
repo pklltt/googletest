@@ -23,7 +23,7 @@
                 <configuration>
                     <parallel>classesAndMethods</parallel>
                     <perCoreThreadCount>true</perCoreThreadCount>
-                    <threadCount>2</threadCount>
+                    <threadCount>1</threadCount>
                 </configuration>
             </plugin>
         </plugins>
