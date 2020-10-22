@@ -1,5 +1,6 @@
 package com.automatedtest.sample.definitions;
 
+import com.automatedtest.sample.driver.DriverUtils;
 import com.automatedtest.sample.pages.SettingPage;
 import com.automatedtest.sample.utils.Common;
 import io.cucumber.java.en.And;
@@ -16,17 +17,17 @@ public class ScrollPageSteps {
 
     @When("I Scroll to bottom")
     public void aUserScrollToBottom() {
-        this.settingPage.scrollToBottom();
+        DriverUtils.scrollToBottom();
     }
 
     @And("I Scroll to top")
     public void aUserScrollToTop() {
-        this.settingPage.scrollToTop();
+        DriverUtils.scrollToTop();
     }
 
     @And("I capture image and save it to {string}")
     public void aUserCaptureImage(String filePath) throws Exception {
-        this.settingPage.takeSnapShot(filePath);
+        DriverUtils.takeSnapShot(filePath);
     }
 
     @Then("Image with file path {string} and {string} should be the same")
